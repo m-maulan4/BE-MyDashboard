@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import {
   authLogin,
   authLogout,
@@ -6,10 +6,10 @@ import {
   authToken,
 } from "../controllers/authController.js";
 
-const authRouter = express.Router();
+const authRouter = Router();
 authRouter.post("/auth/registertion", authRegis);
 authRouter.post("/auth/login", authLogin);
 authRouter.post("/auth/logout", authLogout);
-authRouter.get("/auth/newToken", authToken);
+authRouter.get("/auth/newtoken", authToken);
 
 export default authRouter;

@@ -2,7 +2,6 @@ import { userModel } from "../models/usersModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import { log } from "console";
 
 export const authRegis = async (req, res) => {
   const { fullname, username, password } = req.body;
