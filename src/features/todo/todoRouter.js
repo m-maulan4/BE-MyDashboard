@@ -1,4 +1,5 @@
 import { Router } from "express";
+// import middle from "../../common/middleware/middle.js";
 import * as todo from "./todoController.js";
 const todoRouter = Router();
 todoRouter.get("/todo", todo.getTodoAll);

@@ -1,7 +1,6 @@
 import { userModel } from "../user/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
 
 export const authRegis = async (req, res) => {
   const { fullname, username, password } = req.body;
@@ -87,11 +86,6 @@ export const authToken = async (req, res) => {
         expiresIn: "15m",
       }
     );
-    // buat token crsf
-    // const token_user = crypto
-    //   .createHash("sha256")
-    //   .update(user.username)
-    //   .digest("hex");
     res
       .cookie("access_token", newAccessToken, {
         httpOnly: true,

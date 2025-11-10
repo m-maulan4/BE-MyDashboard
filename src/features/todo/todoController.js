@@ -12,7 +12,7 @@ export const getTodoAll = async (req, res) => {
   const completed = dataRaw.filter((f) => {
     const now = new Date().getMonth();
     const due = new Date(f.due_date).getMonth();
-    return f.status == 3 && due == now;
+    return f.status == 3 && due === now;
   });
   res.json({ pending, on_progress, completed });
 };
@@ -20,6 +20,7 @@ export const postTodo = async (req, res) => {
   const t = await db.transaction();
   if (!req.body) return res.status(400).json({ msg: "gagal" });
   const { title, desc, status, priority, due_date } = req.body;
+
   try {
     await todoModel.create(
       {
@@ -33,6 +34,7 @@ export const postTodo = async (req, res) => {
     );
     await t.commit();
     res.json({ msg: "success" });
+    console.log(due_date);
   } catch (error) {
     await t.rollback();
     res.status(500).json({ msg: "gagal" });
