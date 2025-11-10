@@ -1,28 +1,27 @@
-import { Sequelize } from "sequelize";
 import bcrypt from "bcrypt";
 import { db } from "../../config/db/index.js";
+import { DataTypes } from "sequelize";
 export const userModel = db.define(
   "users",
   {
     fullname: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     username: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     // token_crf: {
-    //   type: Sequelize.STRING,
+    //   type: DataTypes.STRING,
     //   allowNull: false,
     // },
   },
   {
-    Sequelize, // koneksi instance
     timestamps: true, // otomatis buat createdAt & updatedAt
     hooks: {
       beforeCreate: async (user) => {
