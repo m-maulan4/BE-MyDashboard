@@ -6,6 +6,7 @@ import cors from "cors";
 import userRouter from "./src/features/user/userRouter.js";
 import authRouter from "./src/features/auth/authRouter.js";
 import todoRouter from "./src/features/todo/todoRouter.js";
+import { akpdRouter } from "./src/features/akpd/akpdRouter.js";
 
 const port = process.env.APP_PORT || 3000;
 const app = express();
@@ -21,6 +22,7 @@ app.use(
 app.use(authRouter);
 app.use(userRouter);
 app.use(todoRouter);
+app.use(akpdRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
