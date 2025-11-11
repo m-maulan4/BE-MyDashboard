@@ -1,11 +1,11 @@
 import { Router } from "express";
-// import middle from "../../common/middleware/middle.js";
+import middle from "../../common/middleware/middle.js";
 import * as todo from "./todoController.js";
 const todoRouter = Router();
-todoRouter.get("/todo", todo.getTodoAll);
-todoRouter.post("/todo", todo.postTodo);
-todoRouter.patch("/todo/next", todo.nextStatus);
-todoRouter.patch("/todo/back", todo.backStatus);
-todoRouter.put("/todo", todo.editTodo);
-todoRouter.delete("/todo", todo.delTodo);
+todoRouter.get("/todo", middle, todo.getTodoAll);
+todoRouter.post("/todo", middle, todo.postTodo);
+todoRouter.patch("/todo/next", middle, todo.nextStatus);
+todoRouter.patch("/todo/back", middle, todo.backStatus);
+todoRouter.put("/todo", middle, todo.editTodo);
+todoRouter.delete("/todo", middle, todo.delTodo);
 export default todoRouter;

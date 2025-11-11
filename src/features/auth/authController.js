@@ -1,6 +1,7 @@
 import { userModel } from "../user/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { createHash } from "crypto";
 
 export const authRegis = async (req, res) => {
   const { fullname, username, password } = req.body;
@@ -43,26 +44,24 @@ export const authLogin = async (req, res) => {
     const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN, {
       expiresIn: "15m",
     });
-    // const token_user = crypto
-    //   .createHash("sha256")
-    //   .update(username)
-    //   .digest("hex");
-    // await user.update({ refresh_token });
-    res.cookie("refresh_token", refresh_token, {
-      httpOnly: true,
-      secure: false, // set true jika pakai https
-      path: "/",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-    // .cookie("access_token", access_token, {
-    //   httpOnly: true,
-    //   secure: false,
-    //   path: "/",
-    //   sameSite: "strict",
-    //   maxAge: 15 * 60 * 60 * 1000,
-    // });
-    res.json({ username, access_token });
+    const token_user = createHash("sha256").update(username).digest("hex");
+    await user.update({ refresh_token });
+    res
+      .cookie("refresh_token", refresh_token, {
+        httpOnly: true,
+        secure: false, // set true jika pakai https
+        path: "/",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      })
+      .cookie("access_token", access_token, {
+        httpOnly: true,
+        secure: false,
+        path: "/",
+        sameSite: "strict",
+        maxAge: 15 * 60 * 60 * 1000,
+      });
+    res.json({ username, token_user });
   } catch (error) {
     console.log(error);
   }
