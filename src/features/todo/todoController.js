@@ -98,3 +98,16 @@ export const editTodo = async (req, res) => {
     res.status(500).json({ msg: "gagal" });
   }
 };
+export const delTodo = async (req, res) => {
+  const t = await db.transaction();
+  const { id_todo } = req.body;
+  if (!id_todo) return res.status(400).json({ msg: "gagal" });
+  try {
+    await todoModel.destroy({ where: { id: id_todo }, transaction: t });
+    await t.commit();
+    res.json({ msg: "success" });
+  } catch (error) {
+    await t.rollback();
+    res.status(500).json({ msg: "gagal" });
+  }
+};
