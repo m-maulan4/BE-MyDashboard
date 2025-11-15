@@ -11,3 +11,4 @@ financeRouter.get("/keuangan/dompet", dompet.getAllDompet);
 financeRouter.post("/keuangan/kategori", kategori.postKategori);
 //transaksi
 financeRouter.post("/keuangan/transaksi", transaksi.postTransaksi);
+financeRouter.get("/keuangan/transaksi", transaksi.getTransaksi);

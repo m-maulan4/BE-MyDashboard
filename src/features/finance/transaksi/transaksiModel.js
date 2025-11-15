@@ -11,6 +11,10 @@ export const transaksiModel = db.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    jenis_transaksi: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     ket: {
       type: DataTypes.TEXT,
       allowNull: false,
