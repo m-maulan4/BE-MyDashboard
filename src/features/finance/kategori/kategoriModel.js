@@ -7,6 +7,10 @@ export const kategoriModel = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    type: {
+      type: DataTypes.TINYINT.UNSIGNED,
+      allowNull: false,
+    },
   },
   {
     timestamps: true,

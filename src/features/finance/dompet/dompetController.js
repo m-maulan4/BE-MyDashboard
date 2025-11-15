@@ -17,6 +17,8 @@ export const postDompet = async (req, res) => {
   }
 };
 export const getAllDompet = async (req, res) => {
-  const dataRaw = await dompetModal.findAll();
+  const dataRaw = await dompetModal.findAll({
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  });
   return res.json(dataRaw);
 };

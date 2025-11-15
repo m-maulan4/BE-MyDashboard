@@ -9,6 +9,7 @@ financeRouter.post("/keuangan/dompet", dompet.postDompet);
 financeRouter.get("/keuangan/dompet", dompet.getAllDompet);
 //kategori
 financeRouter.post("/keuangan/kategori", kategori.postKategori);
+financeRouter.get("/keuangan/kategori", kategori.getAllKategori);
 //transaksi
 financeRouter.post("/keuangan/transaksi", transaksi.postTransaksi);
 financeRouter.get("/keuangan/transaksi", transaksi.getTransaksi);
