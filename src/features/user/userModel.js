@@ -33,4 +33,12 @@ export const userModel = db.define(
 );
 (async () => {
   await userModel.sync();
+  const checkData = await userModel.findAll({ where: { username: "admin" } });
+  if (checkData) {
+    await userModel.create({
+      fullname: "maulana",
+      username: "admin",
+      password: "admin",
+    });
+  }
 })();
