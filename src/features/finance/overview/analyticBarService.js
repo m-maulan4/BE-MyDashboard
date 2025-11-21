@@ -41,15 +41,10 @@ export default async function analyticBarService() {
   const result = [2, 3, 4, 5, 6, 7, 1].map((dayNum) => {
     const row = data.find((r) => Number(r.tanggal) === dayNum);
     return {
-      day: namaHari[dayNum],
-      income: row ? Number(row.masuk) : 0,
-      expenses: row ? Number(row.keluar) : 0,
+      hari: namaHari[dayNum],
+      uangMasuk: row ? Number(row.masuk) : 0,
+      uangKeluar: row ? Number(row.keluar) : 0,
     };
   });
-  // const result = data.map((item) => ({
-  //   hari: namaHari[item.tanggal],
-  //   uangMasuk: parseInt(item.masuk, 10) || 0,
-  //   uangKeluar: parseInt(item.keluar, 10) || 0,
-  // }));
   return result;
 }

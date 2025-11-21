@@ -14,5 +14,5 @@ export const getOverview = async (req, res) => {
   const tagihan = await tagihanModel.findAll({
     attributes: { exclude: ["createdAt"] },
   });
-  res.json({ widgets, analyticBar, analyticPie, goals, tagihan });
+  res.json({ widgets, goals, tagihan, analyticBar, analyticPie });
 };
