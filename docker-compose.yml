@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: express-app
+    ports:
+      - "3000:3000" # Map port 3000 di container ke port 3000 di host
+    volumes:
+      - .:/usr/src/app # Menggunakan volume agar perubahan kode di local dapat langsung terlihat di container
+    networks:
+      IPStatic:
+        ipv4_address: 172.0.0.2
+    restart: always
+
+# Definisi network jika dibutuhkan
+networks:
+  IPStatic:
+    external: true
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.0.0.0/24"
