@@ -6,7 +6,7 @@ import * as overview from "./overview/overviewController.js";
 import * as goals from "./goals/goalsController.js";
 import * as tagihan from "./tagihan/tagihanController.js";
 
-export const financeRouter = Router();
+const financeRouter = Router();
 // overview
 financeRouter.get("/keuangan/overview", overview.getOverview);
 // dompet
@@ -24,3 +24,4 @@ financeRouter.get("/keuangan/goals", goals.getGoals);
 // tagihan
 financeRouter.post("/keuangan/tagihan", tagihan.postTagihan);
 financeRouter.get("/keuangan/tagihan", tagihan.getTagihan);
+export default financeRouter;

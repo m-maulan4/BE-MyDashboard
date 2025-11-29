@@ -7,7 +7,9 @@ services:
     ports:
       - "3000:3000" # Map port 3000 di container ke port 3000 di host
     volumes:
-      - .:/usr/src/app # Menggunakan volume agar perubahan kode di local dapat langsung terlihat di container
+      - .:/app # Menggunakan volume agar perubahan kode di local dapat langsung terlihat di container
+    env_file:
+      - .env
     networks:
       IPStatic:
         ipv4_address: 172.0.0.2

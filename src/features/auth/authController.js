@@ -78,6 +78,7 @@ export const authToken = async (req, res) => {
     return res.status(403).json({ msg: "Login terlebih dahulu" });
   jwt.verify(refresh_token, process.env.REFRESH_TOKEN, async (err, user) => {
     if (err) return res.status(403).json({ msg: "Login terlebih dahulu" });
+    const token_user = createHash("sha256").update(user.username).digest("hex");
     const newAccessToken = jwt.sign(
       { id: user.id, username: user.username },
       process.env.ACCESS_TOKEN,
@@ -93,6 +94,18 @@ export const authToken = async (req, res) => {
         sameSite: "strict",
         maxAge: 15 * 60 * 60 * 1000,
       })
-      .json({ username: user.username });
+      .json({ username: user.username, token_user });
+  });
+};
+export const me = async (req, res) => {
+  const access_token = req.cookies.access_token;
+  console.log(access_token);
+
+  if (!access_token)
+    return res.status(401).json({ msg: "Login terlebih dahulu" });
+  jwt.verify(access_token, process.env.ACCESS_TOKEN, async (err, user) => {
+    if (err) return res.status(401).json({ msg: "Login terlebih dahulu" });
+    const token_user = createHash("sha256").update(user.username).digest("hex");
+    res.json({ username: user.username, token_user });
   });
 };

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const middle = async (req, res, next) => {
+  await loggin();
   const accessToken = req.cookies.access_token;
   if (!accessToken) {
     return res.status(401).json({ msg: "Access token tidak ditemukan" });

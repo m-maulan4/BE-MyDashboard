@@ -6,16 +6,16 @@ import cors from "cors";
 import userRouter from "./src/features/user/userRouter.js";
 import authRouter from "./src/features/auth/authRouter.js";
 import todoRouter from "./src/features/todo/todoRouter.js";
-import { financeRouter } from "./src/features/finance/financeRouter.js";
+import financeRouter from "./src/features/finance/financeRouter.js";
 
-const port = process.env.APP_PORT || 3000;
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
 );
@@ -24,6 +24,6 @@ app.use(userRouter);
 app.use(todoRouter);
 app.use(financeRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(3000, () => {
+  console.log("app listening on port 3000 ");
 });
